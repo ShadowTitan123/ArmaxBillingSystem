@@ -116,18 +116,10 @@
       <form>
         <div class="text-center mb-3">
           <h4>Sign in with:</h4>
-         
-  
-          <button type="button" class="btn btn-primary btn-floating mx-1">
+          <button type="button" class="btn btn-primary btn-floating mx-1 Glogin">
             <i class="fab fa-google"></i>
           </button>
         </div>
-  
-      
-  
-       
-  
-      
       </form>
     </div>
    
@@ -143,6 +135,9 @@
   <script type="text/javascript" src="js/mdb.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
+ document.querySelector(".Glogin").addEventListener('click',(e)=>{
+    window.location.href = '/auth/google';
+ })
     // Animations initialization
     new WOW().init();
 

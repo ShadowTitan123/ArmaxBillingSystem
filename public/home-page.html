@@ -72,7 +72,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="#"> Configure
+            <a class="nav-link waves-effect" href="#"> Admin Panel
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -104,122 +104,12 @@
   <main>
     <div class="container">
       <section class="text-center mb-4">
-        <div class="row wow fadeIn">
+        <div class="row wow fadeIn" id="ApiGrid">
 
 
-
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card">
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <div class="card-body text-center">
-                <a href="" class="grey-text">
-                  <h5>Shirt</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text"> Product 1 
-                    </a>
-                  </strong>
-                </h5>
-                <h4 class="font-weight-bold blue-text">
-                  <strong>Rs.1000</strong>
-                </h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card">
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <div class="card-body text-center">
-                <a href="" class="grey-text">
-                  <h5>Shirt</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text"> Product 2
-                    </a>
-                  </strong>
-                </h5>
-                <h4 class="font-weight-bold blue-text">
-                  <strong>Rs.2000</strong>
-                </h4>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card">
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <div class="card-body text-center">
-                <a href="" class="grey-text">
-                  <h5>Shirt</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text"> Product 3
-                    </a>
-                  </strong>
-                </h5>
-                <h4 class="font-weight-bold blue-text">
-                  <strong>Rs.3000</strong>
-                </h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 mb-4">
-            <div class="card">
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <div class="card-body text-center">
-                <a href="" class="grey-text">
-                  <h5>Shirt</h5>
-                </a>
-                <h5>
-                  <strong>
-                    <a href="" class="dark-grey-text"> Product 4
-                    </a>
-                  </strong>
-                </h5>
-                <h4 class="font-weight-bold blue-text">
-                  <strong>Rs.4000</strong>
-                </h4>
-              </div>
-            </div>
-          </div>
-
-
-
-
-
+<!-- Products Fetched From Api - /api/fetch.js -->
 
       </section>
-      <!--Section: Products v.3-->
 
     </div>
   </main>
@@ -256,6 +146,9 @@
   <!--/.Footer-->
 
   <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="text/javascript" src="api/fetch.js"></script>
+
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
   <!-- Bootstrap tooltips -->
