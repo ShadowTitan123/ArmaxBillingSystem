@@ -97,106 +97,14 @@
   <div class="container mb-5">
   </div>
 
-  <h3 class="text-center mt-4"> Order Placed Successfully..... </h3>
+  <h3 class="text-center mt-4"> Confirm Order </h3>
 
 
 
  <!--Main layout-->
- <main>
+ <main id="invoice">
 
-    <div class="container-fluid" style="width:70%;">
-
-        <!-- First row -->
-        <div class="row white z-depth-1 mb-r">
-
-            <!-- Navigation -->
-            <div class="col-md-6">
-                <h4 class="h4-responsive mt-3">Order Invoice</h4>
-            </div>
-
-            <div class="col-md-6 text-md-right">
-                <a href="#" class="btn btn-primary" onClick="window.print()"><i class="fa fa-print left"></i> Print</a>
-            </div>
-            <!-- /.Navigation -->
-
-        </div>
-        <!-- /.First row -->
-
-        <section class="invoice row mb-r mt-5">
-
-            <div class="col-md-12">
-
-                <!-- First row -->
-                <div class="row invoice-data">
-                    
-                    <div class="col-6">
-                        <p><small>From:</small></p>
-                        <p><strong>Armax India</strong></p>
-                        <p>Peenya 2nd Stage</p>
-                        <p>Bangalore, India</p>
-                        <p><strong>Invoice date:</strong> November 18, 2016</p>
-                    </div>
-                    <div class="col-6 text-right">
-                        <h4 class="h4-responsive"><small>Invoice No.</small><br/><strong><span class="blue-text">#124190</span></strong></h4>
-
-                        <p><small>To:</small></p>
-                        <p><strong>Mohammed Adil</strong></p>
-                        <p>Address 1</p>
-                        <p>Address 2</p>
-                    </div>
-
-                </div>
-                <!-- ./First row -->
-
-                <!-- Second row -->
-                <div class="row mt-2">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <!-- Item list -->
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>Item list</th>
-                                        <th>Quantity</th>
-                                        <th>Unit Price</th>
-                                        <th>Tax</th>
-                                        <th>Total price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Product One</td>
-                                        <td>1</td>
-                                        <td>2000</td>
-                                        <td>145</td>
-                                        <td>2345</td>
-                                    </tr>
-                                   
-
-                                </tbody>
-                            </table>
-                            <!-- /.Item list -->
-                        </div>
-                    </div>
-                </div>
-                <!-- /.Second row -->
-
-                <!-- Third row -->
-                <div class="row mt-2">
-                    <div class="col-md-3 float-md-right ml-auto">
-                        <ul class="striped list-unstyled">
-                            <li><strong>Sub Total:</strong><span class="float-right">2000</span></li>
-                            <li><strong>Tax:</strong><span class="float-right">145</span></li><br>
-                            <li><strong>Delivery</strong><span class="float-right">200</span></li><br>
-                            <li><strong>TOTAL:</strong><span class="float-right"><strong>2345</strong></span></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- /.Third row -->
-            </div>
-
-        </section>
-    </div>
+   
 
 </main>
 <!--/Main layout-->
@@ -233,7 +141,7 @@
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script type="text/javascript" src="api/fetch.js"></script>
+  <script type="text/javascript" src="api/invoice.js"></script>
 
   <!-- JQuery -->
   <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>

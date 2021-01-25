@@ -337,6 +337,26 @@
     new WOW().init();
 
   </script>
+  
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      getAdmins();
+      function getAdmins() {
+          axios.get('/getCurrentAdmin')
+              .then((res) => {
+                  console.log(res.data);
+               //   document.querySelector('#adminName').innerHTML = res.data.admin_name;
+              })
+              .catch((err) => {
+                  console.log(err);
+              });
+
+
+      }
+  }, false);
+
+
+</script>
 </body>
 
 </html>

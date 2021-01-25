@@ -8,21 +8,22 @@ const db = require('../DB/config.js');
  * Returns a promise with status true/false after insertion.
  */
 
-const CreateOrder = (firstName, LastName, Email, Address, Address2, Country, State, Zip, CardName, CreditCard, Expiration, CVV,id) => {
+const CreateOrder = (firstName, LastName, Email, Address, Address2, Country, State, Zip, CardName, CreditCard, Expiration, CVV,id,sessionUser) => {
     return new Promise((resolve, reject) => {
-        db.query("INSERT INTO `tbl_orders` (`product_id`, `firstName`, `LastName`, `Email`, `Address`, `Address2`, `Country`, `State`, `Zip`, `CardName`, `CreditCard`, `Expiration`, `CVV`, `session_user`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
-            [id,firstName,LastName, Email, Address, Address2, Country, State, Zip, CardName, CreditCard, Expiration, CVV, 2], function (err, rows, fields) {
+        var val = Math.floor(1000 + Math.random() * 9000);
+        db.query("INSERT INTO `tbl_orders` (`product_id`, `firstName`, `LastName`, `Email`, `Address`, `Address2`, `Country`, `State`, `Zip`, `CardName`, `CreditCard`, `Expiration`, `CVV`, `session_user`,`status`,`order_id`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            [id,firstName,LastName, Email, Address, Address2, Country, State, Zip, CardName, CreditCard, Expiration, CVV, sessionUser,0,val], function (err, rows, fields) {
                 if (err) {
                     reject(err);
                     throw err;
                 }
                 else if(rows.affectedRows > 0) {
                     console.log("Order Placed Successfully");
-                    var status = true;
+                    var status = {status:true , orderId : val};
                     resolve(status);
                 } else {
                     console.log("Error Inserting Record");
-                    var status = false;
+                    var status = {status:false , orderId : val};
                     resolve(status);
                 }
             });
@@ -31,6 +32,52 @@ const CreateOrder = (firstName, LastName, Email, Address, Address2, Country, Sta
 }
 
 
+const GetOrderById = (id) => {
+    return new Promise((resolve, reject) => {
+        db.query("SELECT t1.id,t1.order_id,t1.product_id,t1.firstName,t1.LastName,t1.Email,t1.Address,t1.Address2,t1.Country,t1.State,t1.Zip,t2.product_name ,t2.product_type,t2.product_price from tbl_orders t1 INNER join tbl_products t2 ON t1.product_id = t2.id WHERE t1.order_id = ?",[id] ,function (err, rows, fields) {
+            if (err) {
+                reject(err);
+                throw err;
+            }
+            if (rows.length > 0) {
+                console.log("Order Found!");
+                resolve(rows);
+            } else {
+                const error = "Not Found";
+                console.log("Data Not Found");
+                resolve(error);
+            }
+        });
+
+    });
+
+}
+
+
+const ConfirmOrder = (id,User) => {
+    return new Promise((resolve, reject) => {
+        db.query("Update tbl_orders SET status = ? WHERE order_id = ?",
+            [1,id], function (err, rows, fields) {
+                if (err) {
+                    reject(err);
+                    throw err;
+                }
+                else if(rows.affectedRows > 0) {
+                    console.log("Order Confirmed Successfully");
+                    var status = {status:true};
+                    resolve(status);
+                } else {
+                    console.log("Error Inserting Record");
+                    var status = {status:false};
+                    resolve(status);
+                }
+            });
+    })
+
+}
+
 module.exports = {
-    CreateOrder
+    CreateOrder,
+    GetOrderById,
+    ConfirmOrder
 }

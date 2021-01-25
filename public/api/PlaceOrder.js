@@ -24,7 +24,7 @@ GetForm.addEventListener('submit', (e) => {
     var url = new URL(url_string);
     var c = url.searchParams.get("product");
     console.log(c);
-
+    var currentAdmin = localStorage.getItem("currentAdmin");
 
     axios.post('/PlaceOrder', {
         firstName: firstName,
@@ -38,10 +38,16 @@ GetForm.addEventListener('submit', (e) => {
         CreditCard: CreditCard,
         Expiration: Expiration,
         CVV: CVV,
-        product: c
+        product: c,
+        currentAdmin : currentAdmin
     })
      .then(function (response) {
             console.log(response.data);
+            if(response.data.status === true) {
+                window.location.href = '/invoice.html?orderId='+response.data.orderid;
+            }else{
+                alert("Order Failed");
+            }
         })
         .catch(function (error) {
             console.log(error);

@@ -49,26 +49,25 @@
   <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">
+
       <!-- Brand -->
       <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
         <strong class="blue-text">Armax Billing System</strong>
       </a>
+
       <!-- Collapse -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <!-- Links -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link waves-effect" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link waves-effect" href="#">Your Orders
               <span class="sr-only">(current)</span>
             </a>
           </li>
@@ -78,66 +77,41 @@
             </a>
           </li>
         </ul>
+
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
-            <a href="/Logout" class="nav-link border border-light rounded waves-effect">
+            <a href="https://github.com/mdbootstrap/bootstrap-material-design"
+              class="nav-link border border-light rounded waves-effect" target="_blank">
               </i> Logout
             </a>
           </li>
         </ul>
+
       </div>
+
     </div>
   </nav><br><br>
   <!-- Navbar -->
 
-  <div class="container mb-5">
-  </div>
-  <h1 class="text-center mt-4"> Select a Product to Start Billing </h1>
+
+
+  
 
 
   <!--Main layout-->
   <main>
-    <div class="container">
-      <section class="text-center mb-4">
-        <div class="row wow fadeIn" id="ApiGrid">
-          <!-- Products Fetched From Api - /api/fetch.js -->
-      </section>
+    <div class="container text-center pt-4">
+        <h1 class="text-center mt-4"> Failed to Place Order </h1>
+        <a href="home-page.html"><button type="button" class="btn btn-primary">Home</button></a>
+    <button type="button" class="btn btn-secondary">View Orders</button>
+    <button type="button" class="btn btn-success">Logout</button>
     </div>
+  
+
   </main>
   <!--Main layout-->
 
-
-
-  <!--Footer-->
-  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
-    <h4 class="page-header pt-4">Assignment By Mohammed Adil</h4>
-    <!--Call to action-->
-    <div class="pt-4">
-      <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-        target="_blank" role="button">Download My Code Here
-        <i class="fas fa-download ml-2"></i>
-      </a>
-    </div>
-    <!--/.Call to action-->
-
-    <hr class="my-4">
-
-    <!-- Social icons -->
-    <div class="pb-4">
-
-    </div>
-    <!-- Social icons -->
-
-    <!--Copyright-->
-    <div class="footer-copyright py-3">
-      © 2020 Copyright:
-      <a href="" target="_blank"> mdadilehsan77@gmail.com </a>
-    </div>
-    <!--/.Copyright-->
-
-  </footer>
-  <!--/.Footer-->
 
   <!-- SCRIPTS -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -155,27 +129,6 @@
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
-
-  </script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      getAdmins();
-      function getAdmins() {
-        axios.get('/getCurrentAdmin')
-          .then((res) => {
-            console.log(res.data);
-            localStorage.setItem('currentAdmin', res.data.admin);
-            //   document.querySelector('#adminName').innerHTML = res.data.admin_name;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-
-
-      }
-    }, false);
-
 
   </script>
 </body>

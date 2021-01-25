@@ -11,17 +11,14 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session')
 const PORT = process.env.PORT || 3000; 
 require('./Auth/passportSetup.js');
+const { ensureAuth , ensureGuest } = require('./Middleware/authenticate.js'); // destructing and calling 2 exports [0 ,1]
 
+
+// Define All Required Middlewares
 app.use(cors());
-
-//Define Middleware to Access Static Files and Parse Json Bodies
-app.use(express.static(path.join(__dirname, '/public')))
-// Body parser
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
-
-app.use(cookieParser('session_cookie_secret')); // any string ex: 'keyboard cat'
-
+app.use(cookieParser('session_cookie_secret')); 
 app.use(session({
   secret: "session_secret",
   resave: true,
@@ -30,18 +27,48 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000
   },
 }))
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 
 
-app.get('/',(req, res)=>{
-    res.redirect('/login.html');
+//Api Routes [GET] - PRODUCTS
+app.get('/GetAllProducts',require('./routes/ProductController.js'));
+app.get('/GetProduct/:id',require('./routes/ProductController.js'));
+
+//Api Routes - Orders 
+
+// [GET ORDERS]
+app.get('/GetOrderById/:id',require('./routes/OrdersController.js'));
+
+// [POST ORDERS] 
+app.post('/PlaceOrder',require('./routes/OrdersController.js'));
+
+// [Put ORDERS] 
+app.put('/ConfirmOrder',require('./routes/OrdersController.js'));
+
+
+
+// Ensuring Authentication for Main Pages
+
+app.get('/',ensureAuth,(req, res)=>{
+    res.redirect('/home-page.html');
+})
+app.get('/home-page.html',ensureAuth,(req, res)=>{
+    res.sendFile(__dirname + "/public/home-page.html");
+})
+app.get('/checkout-page.html',ensureAuth,(req, res)=>{
+    res.sendFile(__dirname + "/public/checkout-page.html");
+})
+app.get('/invoice.html',ensureAuth,(req, res)=>{
+    res.sendFile(__dirname + "/public/invoice.html");
 })
 
+
+//Login and Authentication Routes
+
 app.get('/auth/google/failure',(req, res)=>{
-    res.send("failed to login");
+    res.send("Failed to Login");
 })
 
 app.get('/auth/google/success',(req, res)=>{
@@ -59,17 +86,21 @@ app.get( '/google/callback',
         failureRedirect: '/auth/google/failure'
 }));
 
+app.get('/getCurrentAdmin',ensureAuth,(req, res)=>{
+    const currentAdmin = req.session.passport.user.displayName;
+    res.json({admin: currentAdmin});
+})
+
+// @desc Logout Route 
+
+app.get('/Logout',(req, res)=>{
+    req.session.destroy();
+    req.logout();
+    res.redirect('/login.html');
+  })
 
 
-//Api Routes [GET]
-app.get('/GetAllProducts',require('./routes/ProductController.js'));
-app.get('/GetProduct/:id',require('./routes/ProductController.js'));
-
-
-//Api Routes [POST]
-app.post('/PlaceOrder',require('./routes/OrdersController.js'));
-
-
+app.use(express.static(path.join(__dirname, '/public')))
 
 // Listen to Port 
 app.listen(PORT, () => {
