@@ -9,7 +9,7 @@ const mysql = require('mysql')
 // })
 
 
-// For Heroku Server
+//For Heroku Server
 const connection = mysql.createPool({
   host: 'us-cdbr-east-03.cleardb.com',
   user: 'b5e1d321dc7bd4',
