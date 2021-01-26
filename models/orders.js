@@ -4,7 +4,7 @@
 const db = require('../DB/config.js');
 
 /*
- * Create a New Cache Data and Inserts into Table
+ * Create a New order and Inserts into Table
  * Returns a promise with status true/false after insertion.
  */
 

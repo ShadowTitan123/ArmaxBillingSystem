@@ -93,8 +93,10 @@ app.get('/dashboard.html',ensureAuth,(req, res)=>{
 })
 
 
-//Login and Authentication Routes
 
+// @ AUTHENTICATION ROUTES 
+
+//Login and Authentication Routes
 app.get('/auth/google/failure',(req, res)=>{
     res.send("Failed to Login");
 })
@@ -128,7 +130,11 @@ app.get('/Logout',(req, res)=>{
   })
 
 
+  
 app.use(express.static(path.join(__dirname, '/public')))
+
+
+
 
 // Listen to Port 
 app.listen(PORT, () => {
