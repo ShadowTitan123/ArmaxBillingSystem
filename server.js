@@ -9,7 +9,7 @@ const passport = require('passport');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const session = require('express-session')
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT; 
 require('./Auth/passportSetup.js');
 const { ensureAuth , ensureGuest } = require('./Middleware/authenticate.js'); // destructing and calling 2 exports [0 ,1]
 
