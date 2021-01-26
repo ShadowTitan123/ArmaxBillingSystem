@@ -54,7 +54,7 @@ const GetSingleProduct = (id) => {
 
 const AddProduct = (ptitle, type, price) => {
     return new Promise((resolve, reject) => {
-        const imgpath = 'http://localhost:3000/products/1.jpg';
+        const imgpath = 'https://armaxbilling.herokuapp.com/products/1.jpg';
         db.query("INSERT INTO `tbl_products` (`product_name`, `product_type`, `product_price`, `product_image`) VALUES ( ?, ?, ?, ?);",
             [ptitle,type,price,imgpath], function (err, rows, fields) {
                 if (err) {

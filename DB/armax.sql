@@ -134,8 +134,7 @@ ALTER TABLE `tbl_products`
 --
 -- AUTO_INCREMENT for table `tbl_google_admin`
 --
-ALTER TABLE `tbl_google_admin`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 
 --
 -- AUTO_INCREMENT for table `tbl_orders`
