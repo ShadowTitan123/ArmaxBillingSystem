@@ -76,8 +76,55 @@ const ConfirmOrder = (id,User) => {
 
 }
 
+const GetAllOrder = () => {
+    return new Promise((resolve, reject) => {
+        db.query("SELECT t1.id,t1.order_id,t1.product_id,t1.firstName,t1.LastName,t1.Email,t1.Address,t1.Address2,t1.Country,t1.State,t1.session_user,t1.created_Date,t1.Zip,t2.product_name ,t2.product_type,t2.product_price from tbl_orders t1 INNER join tbl_products t2 ON t1.product_id = t2.id WHERE t1.status = 1" ,function (err, rows, fields) {
+            if (err) {
+                reject(err);
+                throw err;
+            }
+            if (rows.length > 0) {
+                console.log("Orders Found!");
+                resolve(rows);
+            } else {
+                const error = "Not Found";
+                console.log("Data Not Found");
+                resolve(error);
+            }
+        });
+
+    });
+
+}
+
+
+const DeleteOrder = (id) => {
+    return new Promise((resolve, reject) => {
+        db.query("DELETE FROM `tbl_orders` WHERE `tbl_orders`.`id` = ?",
+            [id], function (err, rows, fields) {
+                if (err) {
+                    reject(err);
+                    throw err;
+                }
+                else if(rows.affectedRows > 0) {
+                    console.log("Order Deleted Successfully");
+                    var status = {status:true};
+                    resolve(status);
+                } else {
+                    console.log("Error Deleting Record");
+                    var status = {status:false};
+                    resolve(status);
+                }
+            });
+    })
+
+}
+
+
 module.exports = {
     CreateOrder,
     GetOrderById,
-    ConfirmOrder
+    ConfirmOrder,
+    GetAllOrder,
+    DeleteOrder
 }

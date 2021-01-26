@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { CreateOrder , GetOrderById , ConfirmOrder} = require('../models/orders.js');
+const { CreateOrder , GetOrderById , ConfirmOrder , GetAllOrder , DeleteOrder} = require('../models/orders.js');
 const db = require('../DB/config.js');
 
 
@@ -67,10 +67,49 @@ router.put('/ConfirmOrder', async (req, res) => {
         console.log(err);
         res.status(500).json(err);  
     }
+});
 
+
+
+router.get('/GetAllOrders', async (req, res) => {
+
+    try{
+        const GetAllOrders = await GetAllOrder();
+        if(GetAllOrders != null && GetAllOrders != 'Not Found' && GetAllOrders != ''){
+            console.log("<------------------------------->");
+            res.status(200).json(GetAllOrders);
+        }else{
+            console.log("error");
+            res.status(200).json({"message":"Data Not Found"})
+        }
+    }
+    catch(err){
+        console.log(err);
+        res.status(500).json(err);
+    }
 
 
 });
+
+router.delete('/DeleteOrder', async (req, res) => {
+
+    try {
+        const DeleteOrders = await DeleteOrder(req.body.alertId);
+        if (DeleteOrders.status === true) {
+            console.log("Product Deleted");
+            console.log("<------------------------------->");
+            res.status(200).json({ "message": "Order Deleted successfully", "status":true});
+        } else {
+            console.log("Data Failed to Delete in DB");
+            res.status(500).json({ "message": "Error Deleting Data","status":false });
+        }
+    }
+    catch (err) {
+        console.log(err);
+        res.status(500).json(err);  
+    }
+});
+
 
 
 

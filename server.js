@@ -32,25 +32,47 @@ app.use(passport.session());
 
 
 
-//Api Routes [GET] - PRODUCTS
+//@ API ROUTES - Products
+//[GET]
 app.get('/GetAllProducts',require('./routes/ProductController.js'));
 app.get('/GetProduct/:id',require('./routes/ProductController.js'));
 
-//Api Routes - Orders 
+//[POST]
+app.post('/AddProduct',require('./routes/ProductController.js'));
 
-// [GET ORDERS]
+//[PUT]
+app.put('/UpdateProduct',require('./routes/ProductController.js'));
+
+//[DELETE]
+app.delete('/DeleteProduct',require('./routes/ProductController.js'));
+
+
+
+
+
+// @ API ROUTES - ORDERS 
+// [GET]
 app.get('/GetOrderById/:id',require('./routes/OrdersController.js'));
+app.get('/GetAllOrders',require('./routes/OrdersController.js'));
 
-// [POST ORDERS] 
+//[POST]
 app.post('/PlaceOrder',require('./routes/OrdersController.js'));
 
-// [Put ORDERS] 
+//[PUT]
 app.put('/ConfirmOrder',require('./routes/OrdersController.js'));
+
+//[DELETE]
+app.delete('/DeleteOrder',require('./routes/OrdersController.js'));
+
+
+
+// @ API ROUTES - USERS
+// [GET]
+app.get('/GetAllUsers',require('./routes/UserController.js'));
 
 
 
 // Ensuring Authentication for Main Pages
-
 app.get('/',ensureAuth,(req, res)=>{
     res.redirect('/home-page.html');
 })
@@ -60,8 +82,14 @@ app.get('/home-page.html',ensureAuth,(req, res)=>{
 app.get('/checkout-page.html',ensureAuth,(req, res)=>{
     res.sendFile(__dirname + "/public/checkout-page.html");
 })
-app.get('/invoice.html',ensureAuth,(req, res)=>{
-    res.sendFile(__dirname + "/public/invoice.html");
+app.get('/success.html',ensureAuth,(req, res)=>{
+    res.sendFile(__dirname + "/public/success.html");
+})
+app.get('/failure.html',ensureAuth,(req, res)=>{
+    res.sendFile(__dirname + "/public/failure.html");
+})
+app.get('/dashboard.html',ensureAuth,(req, res)=>{
+    res.sendFile(__dirname + "/public/dashboard.html");
 })
 
 
